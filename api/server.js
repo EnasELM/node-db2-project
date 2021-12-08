@@ -5,11 +5,19 @@ const server = express()
 
 // DO YOUR MAGIC
 server.use(express.json());
-//server.use('/api/cars', carsRouter)
 
-server.use('*', (req, res) => {
+server.use('/api/cars', carsRouter)
+
+server.use('*', (req, res, next) => {
     // catch all 404 errors middleware
-    res.status(404).json({ message: ` not found!` });
+    next({ status:404,message: ` not found!` });
   });
+  server.use((err, req, res, next) => { 
+ 
+    res.status(err.status || 500).json({// eslint-disable-line
+      message: ` ${err.message}`,
+      stack: err.stack,
+    });
+  })
   
 module.exports = server
