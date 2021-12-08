@@ -1,5 +1,6 @@
 const getAll = () => {
   // DO YOUR MAGIC
+  return db('cars')
 }
 
 const getById = () => {
