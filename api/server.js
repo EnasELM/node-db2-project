@@ -12,11 +12,12 @@ server.use('*', (req, res, next) => {
     // catch all 404 errors middleware
     next({ status:404,message: ` not found!` });
   });
+
   server.use((err, req, res, next) => { 
  
     res.status(err.status || 500).json({// eslint-disable-line
-      message: ` ${err.message}`,
-      stack: err.stack,
+      message: err.message,
+      
     });
   })
   
