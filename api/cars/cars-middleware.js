@@ -26,12 +26,12 @@ const checkCarPayload = (req, res, next) => {
   }
 
 const checkVinNumberValid = (req, res, next) => {
-   if(vin.validate(req.params.vin)) {
+   if(vin.validate(req.body.vin)) {
      next()
    }else {
      next({ 
        status: 400,
-        message: `vin ${req.params.vin} is invalid`})
+        message: `vin ${req.pody.vin} is invalid`})
    }
 }
 
